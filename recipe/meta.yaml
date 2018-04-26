@@ -1,4 +1,4 @@
-{% set name="pyglet" %}
+{% set name = "pyglet" %}
 {% set version = "1.3.1" %}
 {% set sha256 = "0a73280fa3949ea4890fee28f625c10b1e10a7cda390a08b6bce4740948167cd" %}
 

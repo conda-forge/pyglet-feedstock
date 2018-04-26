@@ -11,6 +11,20 @@ Summary: Cross-platform windowing and multimedia library
 
 
 
+Current build status
+====================
+
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/pyglet-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/pyglet-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/pyglet-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/pyglet-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/pyglet-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/pyglet-feedstock/branch/master)
+
+Current release info
+====================
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pyglet-green.svg)](https://anaconda.org/conda-forge/pyglet) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pyglet.svg)](https://anaconda.org/conda-forge/pyglet) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pyglet.svg)](https://anaconda.org/conda-forge/pyglet) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pyglet.svg)](https://anaconda.org/conda-forge/pyglet) |
+
 Installing pyglet
 =================
 
@@ -31,7 +45,6 @@ It is possible to list all of the versions of `pyglet` available on your platfor
 ```
 conda search pyglet --channel conda-forge
 ```
-
 
 
 About conda-forge
@@ -55,6 +68,7 @@ To manage the continuous integration and simplify feedstock maintenance
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
+For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -67,18 +81,6 @@ Terminology
 
 **conda-forge** - the place where the feedstock and smithy live and work to
                   produce the finished article (built conda distributions)
-
-Current build status
-====================
-
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/pyglet-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/pyglet-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/pyglet-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/pyglet-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/pyglet-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/pyglet-feedstock/branch/master)
-
-Current release info
-====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pyglet/badges/version.svg)](https://anaconda.org/conda-forge/pyglet)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pyglet/badges/downloads.svg)](https://anaconda.org/conda-forge/pyglet)
 
 
 Updating pyglet-feedstock

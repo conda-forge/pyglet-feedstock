@@ -12,7 +12,7 @@ source:
     sha256: {{ sha256 }}
 
 build:
-    number: 1000
+    number: 2000
     script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
@@ -24,45 +24,13 @@ requirements:
     - freetype
 
 test:
-  imports:
-    - pyglet
-    - pyglet.app
-    - pyglet.canvas
-    - pyglet.extlibs
-    - pyglet.libs
-    - pyglet.libs.x11  # [linux]
-    - pyglet.libs.darwin  # [osx]
-    - pyglet.libs.darwin.cocoapy  # [osx]
-    - pyglet.libs.win32  # [win]
-
-    # Skip all of the audio driver imports for now...
-
-    # skip to avoid installing audio drivers on Windows, see
-    # https://www.openal.org/platforms/
-    #- pyglet.media.drivers.openal  # [not win or linux]
-
-    # Again, skip the driver-specific import
-    #- pyglet.media.drivers.pulse  # [not win]
-
-    # Skip the carbon test because carbon isn't present on recent versions
-    # of OSX.
-    # - pyglet.window.carbon  # [osx]
-
-    - pyglet.window.win32  # [win]
-
-    # Would be nice to enable these eventually on non-Windows:
-    - pyglet.font  # [win]
-    - pyglet.gl  # [win]
-    - pyglet.graphics  # [win]
-    - pyglet.image  # [win]
-    - pyglet.image.codecs  # [win]
-    - pyglet.input  # [win]
-    - pyglet.media  # [win]
-    - pyglet.media.drivers  # [win]
-    - pyglet.media.drivers.directsound  # [win]
-    - pyglet.window  # [win]
-    - pyglet.text  # [win]
-    - pyglet.text.formats  # [win]
+  requires:
+    - libglu  # [linux]
+  files:
+    - run_tests.py
+  commands:
+    - python run_tests.py  # [not linux]
+    - xvfb-run --server-args=":99 -screen 0 1024x768x24 -ac +extension GLX -noreset" python run_tests.py  # [linux]
 
 about:
   home: http://pyglet.readthedocs.org/en/pyglet-1.2-maintenance/

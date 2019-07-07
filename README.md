@@ -1,9 +1,9 @@
 About pyglet
 ============
 
-Home: http://pyglet.readthedocs.org/en/pyglet-1.2-maintenance/
+Home: https://pyglet.readthedocs.io/en/pyglet-1.3-maintenance/
 
-Package license: BSD 3-Clause
+Package license: BSD-3-Clause
 
 Feedstock license: BSD 3-Clause
 

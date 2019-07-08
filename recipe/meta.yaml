@@ -37,6 +37,7 @@ about:
   home: https://pyglet.readthedocs.io/en/pyglet-1.3-maintenance/
   license: BSD-3-Clause
   license_family: BSD
+  license_file: LICENSE
   summary: 'Cross-platform windowing and multimedia library'
 
 extra:

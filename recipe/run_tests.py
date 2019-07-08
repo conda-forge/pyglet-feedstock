@@ -15,6 +15,9 @@ import pyglet.window
 import pyglet.text
 import pyglet.text.formats
 
+# Skip to avoid having to install audio drivers.
+# import pyglet.media.drivers.openal
+# import pyglet.media.drivers.pulse
 
 # Platform-specific tests.
 import sys
@@ -24,20 +27,11 @@ if sys.platform == 'win32':
     import pyglet.window.win32
     import pyglet.media.drivers.directsound
 
-    # Skip to avoid having to install audio drivers.
-    # import pyglet.media.drivers.openal
-    # pyglet.media.drivers.pulse
-
 if sys.platform == 'darwin':
     import pyglet.libs.darwin
     import pyglet.libs.darwin.cocoapy
     import pyglet.window.cocoa
-    # Skip to avoid having to install audio drivers.
-    # import pyglet.media.drivers.pulse
 
 if sys.platform == 'linux':
     import pyglet.libs.x11
     import pyglet.window.xlib
-    # Skip to avoid having to install audio drivers.
-    # import pyglet.media.drivers.openal
-    # import pyglet.media.drivers.pulse

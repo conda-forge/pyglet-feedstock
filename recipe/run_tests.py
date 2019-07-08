@@ -24,8 +24,7 @@ if sys.platform == 'win32':
     import pyglet.window.win32
     import pyglet.media.drivers.directsound
 
-    # skip to avoid installing audio drivers on Windows, see
-    # https://www.openal.org/platforms/
+    # Skip to avoid having to install audio drivers.
     # import pyglet.media.drivers.openal
     # pyglet.media.drivers.pulse
 
@@ -33,10 +32,12 @@ if sys.platform == 'darwin':
     import pyglet.libs.darwin
     import pyglet.libs.darwin.cocoapy
     import pyglet.window.cocoa
+    # Skip to avoid having to install audio drivers.
     # import pyglet.media.drivers.pulse
 
 if sys.platform == 'linux':
     import pyglet.libs.x11
     import pyglet.window.xlib
+    # Skip to avoid having to install audio drivers.
     # import pyglet.media.drivers.openal
     # import pyglet.media.drivers.pulse

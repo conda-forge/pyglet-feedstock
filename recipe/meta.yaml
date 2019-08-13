@@ -38,11 +38,12 @@ test:
     - xvfb-run --server-args=":99 -screen 0 1024x768x24 -ac +extension GLX -noreset" python run_tests.py  # [linux]
 
 about:
-  home: https://pyglet.readthedocs.io/en/pyglet-1.3-maintenance/
+  home: http://pyglet.org
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
   summary: 'Cross-platform windowing and multimedia library'
+  dev_url: https://github.com/pyglet/pyglet
 
 extra:
   recipe-maintainers:

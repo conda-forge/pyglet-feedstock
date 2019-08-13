@@ -1,6 +1,6 @@
 {% set name = "pyglet" %}
-{% set version = "1.4.1" %}
-{% set sha256 = "42cce50a97cf524a28d3176652353ca3a7e73fb46c093c1eba698df20822578c" %}
+{% set version = "1.4.2" %}
+{% set sha256 = "fda25ae5e99057f05bd339ea7972196d2f44e6fe8fb210951ab01f6609cdbdb7" %}
 
 package:
     name: {{ name }}

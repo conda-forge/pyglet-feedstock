@@ -201,6 +201,4 @@ Feedstock Maintainers
 * [@hoechenberger](https://github.com/hoechenberger/)
 * [@jakirkham](https://github.com/jakirkham/)
 * [@mwcraig](https://github.com/mwcraig/)
-* [@r1chardj0n3s](https://github.com/r1chardj0n3s/)
-* [@silvester747](https://github.com/silvester747/)
 

@@ -11,6 +11,7 @@ import pyglet.image.codecs
 import pyglet.input
 import pyglet.media
 import pyglet.media.drivers
+import pyglet.media.codecs.ffmpeg
 import pyglet.window
 import pyglet.text
 import pyglet.text.formats

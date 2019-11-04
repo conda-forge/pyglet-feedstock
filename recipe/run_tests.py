@@ -1,3 +1,5 @@
+import sys
+
 import pyglet
 import pyglet.app
 import pyglet.canvas
@@ -11,6 +13,8 @@ import pyglet.image.codecs
 import pyglet.input
 import pyglet.media
 import pyglet.media.drivers
+if sys.platform != 'darwin':  # FIXME: Upstream library loader doesn't consider CONDA_PREFIX
+    import pyglet.media.codecs.ffmpeg
 import pyglet.window
 import pyglet.text
 import pyglet.text.formats
@@ -20,7 +24,6 @@ import pyglet.text.formats
 # import pyglet.media.drivers.pulse
 
 # Platform-specific tests.
-import sys
 
 if sys.platform == 'win32':
     import pyglet.libs.win32

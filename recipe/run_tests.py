@@ -1,3 +1,5 @@
+import sys
+
 import pyglet
 import pyglet.app
 import pyglet.canvas
@@ -22,7 +24,6 @@ import pyglet.text.formats
 # import pyglet.media.drivers.pulse
 
 # Platform-specific tests.
-import sys
 
 if sys.platform == 'win32':
     import pyglet.libs.win32

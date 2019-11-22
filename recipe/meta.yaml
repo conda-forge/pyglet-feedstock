@@ -21,7 +21,6 @@ requirements:
     - python
     - freetype
     - future
-    - ffmpeg
 
 test:
   # We moved all "import ..." tests to `run_tests.py` because on Linux, we

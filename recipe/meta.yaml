@@ -12,7 +12,7 @@ source:
     - python38-win.patch  # Use time.perf_counter() instead of time.clock()
 
 build:
-  number: 5000
+  number: 1001
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:

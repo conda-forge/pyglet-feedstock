@@ -13,8 +13,6 @@ import pyglet.image.codecs
 import pyglet.input
 import pyglet.media
 import pyglet.media.drivers
-if sys.platform != 'darwin':  # FIXME: Upstream library loader doesn't consider CONDA_PREFIX
-    import pyglet.media.codecs.ffmpeg
 import pyglet.window
 import pyglet.text
 import pyglet.text.formats

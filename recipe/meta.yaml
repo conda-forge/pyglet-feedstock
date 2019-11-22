@@ -1,16 +1,18 @@
 {% set name = "pyglet" %}
-{% set version = "1.4.7" %}
+{% set version = "1.3.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.zip
-  sha256: 3207246c6051e099819909e459671e03aae219f2ce0b6bd68d234f35ee2c341a
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: b00570e7cdf6971af8953b6ece50d83d13272afa5d1f1197c58c0f478dd17743
+  patches:
+    - python38-win.patch  # Use time.perf_counter() instead of time.clock()
 
 build:
-  number: 0
+  number: 1001
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
@@ -21,7 +23,6 @@ requirements:
     - python
     - freetype
     - future
-    - ffmpeg
 
 test:
   # We moved all "import ..." tests to `run_tests.py` because on Linux, we

@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: b00570e7cdf6971af8953b6ece50d83d13272afa5d1f1197c58c0f478dd17743
+  patches:
+    - python38-win.patch  # Use time.perf_counter() instead of time.clock()
 
 build:
   number: 5000

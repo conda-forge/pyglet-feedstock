@@ -10,15 +10,17 @@ source:
   sha256: 9c7fd49296d8d61be972335f4e989922c90ea40f2d4b51642db29ee7a8adc65c
 
 build:
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   build:
-    - python
+    - python !=3.7.6  # [linux]
+    - python          # [not linux]
     - pip
   run:
-    - python
+    - python !=3.7.6  # [linux]
+    - python          # [not linux]
     - freetype
     - future
     - ffmpeg

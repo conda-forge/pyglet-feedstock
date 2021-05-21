@@ -21,6 +21,7 @@ requirements:
   host:
     - python
     - pip
+    - flit-core
   run:
     - python
     - freetype

@@ -1,5 +1,5 @@
 {% set name = "pyglet" %}
-{% set version = "1.5.16" %}
+{% set version = "1.5.19" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.zip
-  sha256: ad4a02d6fbebdaa748f8af6d2d388d64d446b6ccdfb9c0d7dfd49d7164913400
+  sha256: fe4ba1d916e8596a0eb38297d0fca1365620288f2ad92ca25af309be9ae0ffcc
 
 build:
   number: 0

@@ -1,2 +1,3 @@
+freeglut
 mesa-libGL
 xorg-x11-server-Xvfb

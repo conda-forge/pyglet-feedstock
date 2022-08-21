@@ -38,7 +38,8 @@ test:
     - run_tests.py
   commands:
     - python run_tests.py  # [not linux]
-    - xvfb-run --server-args=":99 -screen 0 1024x768x24 -ac +extension GLX -noreset" python run_tests.py  # [linux]
+    # https://github.com/openai/gym/issues/673
+    - LANG=en_US.UTF-8 xvfb-run --server-args=":99 -screen 0 1024x768x24 -ac +extension GLX -noreset" python run_tests.py  # [linux]
 
 about:
   home: http://pyglet.org

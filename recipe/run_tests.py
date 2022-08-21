@@ -1,9 +1,5 @@
 import sys
 
-# https://github.com/openai/gym/issues/673#issuecomment-501981467
-import os
-os.environ['LANG'] = 'en_US'
-
 import pyglet
 import pyglet.app
 import pyglet.canvas

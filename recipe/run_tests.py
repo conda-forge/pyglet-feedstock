@@ -5,7 +5,6 @@ import pyglet.app
 import pyglet.canvas
 import pyglet.extlibs
 import pyglet.libs
-import pyglet.font
 import pyglet.gl
 import pyglet.graphics
 import pyglet.image
@@ -23,18 +22,19 @@ import pyglet.text.formats
 # import pyglet.media.drivers.openal
 # import pyglet.media.drivers.pulse
 
-# Platform-specific tests.
+# Test currently doesn't work on the Linux CI systems
+if sys.platform != 'linux':
+    import pyglet.font
 
+# Platform-specific tests.
 if sys.platform == 'win32':
     import pyglet.libs.win32
     import pyglet.window.win32
     import pyglet.media.drivers.directsound
-
-if sys.platform == 'darwin':
+elif sys.platform == 'darwin':
     import pyglet.libs.darwin
     import pyglet.libs.darwin.cocoapy
     import pyglet.window.cocoa
-
-if sys.platform == 'linux':
+elif sys.platform == 'linux':
     import pyglet.libs.x11
     import pyglet.window.xlib

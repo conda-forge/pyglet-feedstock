@@ -5,7 +5,6 @@ import pyglet.app
 import pyglet.canvas
 import pyglet.extlibs
 import pyglet.libs
-import pyglet.gl
 import pyglet.graphics
 import pyglet.image
 import pyglet.image.codecs
@@ -25,6 +24,7 @@ import pyglet.text.formats
 # Test currently doesn't work on the Linux CI systems
 if sys.platform != 'linux':
     import pyglet.font
+    import pyglet.gl
 
 # Platform-specific tests.
 if sys.platform == 'win32':

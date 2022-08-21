@@ -39,8 +39,8 @@ test:
   commands:
     - python run_tests.py  # [not linux]
     # https://github.com/openai/gym/issues/673
-    - localectl set-locale LANG=en_US.utf8  # [linux]
-    - xvfb-run --server-args=":99 -screen 0 1024x768x24 -ac +extension GLX -noreset" python run_tests.py  # [linux]
+    - localedef -v -c -i en_US -f UTF-8 en_US.UTF-8  # [linux]
+    - LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 xvfb-run --server-args=":99 -screen 0 1024x768x24 -ac +extension GLX -noreset" python run_tests.py  # [linux]
 
 about:
   home: http://pyglet.org

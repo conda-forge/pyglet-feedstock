@@ -5,7 +5,6 @@ import pyglet.app
 import pyglet.canvas
 import pyglet.extlibs
 import pyglet.libs
-import pyglet.image
 import pyglet.image.codecs
 import pyglet.input
 import pyglet.media
@@ -25,6 +24,7 @@ if sys.platform != 'linux':
     import pyglet.font
     import pyglet.gl
     import pyglet.graphics
+    import pyglet.image
 
 # Platform-specific tests.
 if sys.platform == 'win32':

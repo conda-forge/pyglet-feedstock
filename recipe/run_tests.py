@@ -16,7 +16,8 @@ import pyglet.media.drivers
 if sys.platform != 'darwin':
     import pyglet.media.codecs.ffmpeg
 
-# Tests currently don't work the Linux CI systems
+# Tests currently don't work the Linux CI systems:
+# pyglet.window.xlib.XlibException: Could not create UTF8 text property
 if sys.platform != 'linux':
     import pyglet.font
     import pyglet.gl
@@ -39,4 +40,8 @@ elif sys.platform == 'darwin':
     import pyglet.window.cocoa
 elif sys.platform == 'linux':
     import pyglet.libs.x11
-    import pyglet.window.xlib
+
+    # Disabled:
+    # pyglet.window.xlib.XlibException: Could not create UTF8 text property
+
+    # import pyglet.window.xlib

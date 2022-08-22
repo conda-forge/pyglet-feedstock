@@ -1,1 +1,8 @@
+# Dependencies here are all for running the tests only
 xorg-x11-server-Xvfb
+mesa-libGL
+mesa-dri-drivers
+libselinux
+libXdamage
+libXxf86vm
+libXext

@@ -9,14 +9,13 @@ import pyglet.media
 import pyglet.media.drivers
 if sys.platform != 'darwin':  # FIXME: Upstream library loader doesn't consider CONDA_PREFIX
     import pyglet.media.codecs.ffmpeg
-import pyglet.text
 import pyglet.text.formats
 
 # Skip to avoid having to install audio drivers.
 # import pyglet.media.drivers.openal
 # import pyglet.media.drivers.pulse
 
-# Test currently doesn't work on the Linux CI systems
+# Tests currently don't work the Linux CI systems
 if sys.platform != 'linux':
     import pyglet.font
     import pyglet.gl
@@ -24,6 +23,7 @@ if sys.platform != 'linux':
     import pyglet.image
     import pyglet.image.codecs
     import pyglet.input
+    import pyglet.text
     import pyglet.window
 
 # Platform-specific tests.

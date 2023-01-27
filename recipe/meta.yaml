@@ -12,7 +12,7 @@ source:
     - pyproject.toml.patch  # remove contents of unneeded file.
 
 build:
-  number: 2
+  number: 3
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [py2k]
 
@@ -27,7 +27,7 @@ requirements:
     - python
     - freetype
     - future
-    - ffmpeg >=4,<=5
+    - ffmpeg >=4,<6
 
 test:
   # We moved all "import ..." tests to `run_tests.py` because on Linux, we

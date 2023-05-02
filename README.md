@@ -1,11 +1,11 @@
-About pyglet
-============
+About pyglet-feedstock
+======================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pyglet-feedstock/blob/main/LICENSE.txt)
 
 Home: http://pyglet.org
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pyglet-feedstock/blob/main/LICENSE.txt)
 
 Summary: Cross-platform windowing and multimedia library
 

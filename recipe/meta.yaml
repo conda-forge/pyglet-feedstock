@@ -12,7 +12,7 @@ source:
     - pyproject.toml.patch  # remove contents of unneeded file.
 
 build:
-  number: 3
+  number: 4
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [py2k]
 

@@ -1,18 +1,18 @@
 {% set name = "pyglet" %}
-{% set version = "1.5.27" %}
+{% set version = "2.0.14" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.zip
-  sha256: 4d00e067451f3b10fd51b69764fddab65444372a2da344ee2b35f0a8e6ebf005
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 9b3bef1532395d88600db115b2eea8c345d2851be48ad8ac64b152b16f089777
   patches:
     - pyproject.toml.patch  # remove contents of unneeded file.
 
 build:
-  number: 4
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [py2k]
 

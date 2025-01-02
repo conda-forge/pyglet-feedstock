@@ -1,15 +1,12 @@
-{% set name = "pyglet" %}
-{% set version = "2.0.15" %}
+{% set version = "2.0.20" %}
 
 package:
-  name: {{ name|lower }}
+  name: pyglet
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 42085567cece0c7f1c14e36eef799938cbf528cfbb0150c484b984f3ff1aa771
-  patches:
-    - pyproject.toml.patch  # remove contents of unneeded file.
+  url: https://pypi.io/packages/source/p/pyglet/pyglet-{{ version }}.tar.gz
+  sha256: 702ea52b1fc1b6447904d2edd579212b29f1b3475e098ac49b57647a064accb7
 
 build:
   number: 0
@@ -20,7 +17,7 @@ requirements:
   host:
     - python {{ python_min }}
     - pip
-    - setuptools
+    - flit-core
   run:
     - python >={{ python_min }}
     - freetype

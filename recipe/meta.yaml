@@ -14,20 +14,18 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [py2k]
+  noarch: python
 
 requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
     - python
     - pip
+    - setuptools
   run:
     - python
     - freetype
     - future
-    - ffmpeg >=4,<6
+    - ffmpeg
 
 test:
   # We moved all "import ..." tests to `run_tests.py` because on Linux, we

@@ -18,11 +18,11 @@ build:
 
 requirements:
   host:
-    - python
+    - python {{ python_min }}
     - pip
     - setuptools
   run:
-    - python
+    - python >={{ python_min }}
     - freetype
     - future
     - ffmpeg
@@ -34,6 +34,7 @@ test:
   # test script directly.
   requires:
     - libglu  # [linux]
+    - python {{ python_min }}
   files:
     - run_tests.py
   commands:

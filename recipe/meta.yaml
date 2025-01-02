@@ -21,8 +21,7 @@ requirements:
   run:
     - python >={{ python_min }}
     - freetype
-    - future
-    - ffmpeg
+    - ffmpeg >=4.0.0
 
 test:
   # We moved all "import ..." tests to `run_tests.py` because on Linux, we
@@ -32,9 +31,11 @@ test:
   requires:
     - libglu  # [linux]
     - python {{ python_min }}
+    - pip
   files:
     - run_tests.py
   commands:
+    - pip check
     - python run_tests.py  # [not linux]
     - xvfb-run --server-args=":99 -screen 0 1024x768x24 -ac +extension GLX -noreset" python run_tests.py  # [linux]
 

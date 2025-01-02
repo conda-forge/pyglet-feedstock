@@ -5,8 +5,6 @@ import pyglet.app
 import pyglet.canvas
 import pyglet.extlibs
 import pyglet.libs
-import pyglet.media
-import pyglet.media.drivers
 
 # Skip to avoid having to install audio drivers.
 # import pyglet.media.drivers.openal
@@ -19,6 +17,8 @@ if sys.platform != 'darwin':
 # Tests currently don't work the Linux CI systems:
 # pyglet.window.xlib.XlibException: Could not create UTF8 text property
 if sys.platform != 'linux':
+    import pyglet.media
+    import pyglet.media.drivers
     import pyglet.font
     import pyglet.gl
     import pyglet.graphics

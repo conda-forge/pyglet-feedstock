@@ -1,12 +1,12 @@
-{% set version = "2.0.20" %}
+{% set version = "2.1.1" %}
 
 package:
   name: pyglet
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/p/pyglet/pyglet-{{ version }}.tar.gz
-  sha256: 702ea52b1fc1b6447904d2edd579212b29f1b3475e098ac49b57647a064accb7
+  url: https://pypi.org/packages/source/p/pyglet/pyglet-{{ version }}.tar.gz
+  sha256: 47f49890a00e9fefc4d0ea74dc5b9d6b9be1c5455bb5746b2df118012cfa3124
 
 build:
   number: 0

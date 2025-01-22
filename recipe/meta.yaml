@@ -1,33 +1,27 @@
-{% set name = "pyglet" %}
-{% set version = "1.5.27" %}
+{% set version = "2.0.20" %}
 
 package:
-  name: {{ name|lower }}
+  name: pyglet
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.zip
-  sha256: 4d00e067451f3b10fd51b69764fddab65444372a2da344ee2b35f0a8e6ebf005
-  patches:
-    - pyproject.toml.patch  # remove contents of unneeded file.
+  url: https://pypi.io/packages/source/p/pyglet/pyglet-{{ version }}.tar.gz
+  sha256: 702ea52b1fc1b6447904d2edd579212b29f1b3475e098ac49b57647a064accb7
 
 build:
-  number: 4
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [py2k]
+  noarch: python
 
 requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
-    - python
+    - python {{ python_min }}
     - pip
+    - flit-core
   run:
-    - python
+    - python >={{ python_min }}
     - freetype
-    - future
-    - ffmpeg >=4,<6
+    - ffmpeg >=4.0.0
 
 test:
   # We moved all "import ..." tests to `run_tests.py` because on Linux, we
@@ -36,9 +30,12 @@ test:
   # test script directly.
   requires:
     - libglu  # [linux]
+    - python {{ python_min }}
+    - pip
   files:
     - run_tests.py
   commands:
+    - pip check
     - python run_tests.py  # [not linux]
     - xvfb-run --server-args=":99 -screen 0 1024x768x24 -ac +extension GLX -noreset" python run_tests.py  # [linux]
 
@@ -55,3 +52,4 @@ extra:
     - mwcraig
     - jakirkham
     - bitcraft
+    - hmaarrfk  # just a maintainer to help move things forward. Happy to retire myself

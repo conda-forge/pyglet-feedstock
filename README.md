@@ -146,6 +146,7 @@ Feedstock Maintainers
 =====================
 
 * [@bitcraft](https://github.com/bitcraft/)
+* [@hmaarrfk](https://github.com/hmaarrfk/)
 * [@jakirkham](https://github.com/jakirkham/)
 * [@mwcraig](https://github.com/mwcraig/)
 

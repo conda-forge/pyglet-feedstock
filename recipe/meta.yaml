@@ -1,4 +1,4 @@
-{% set version = "2.1.4" %}
+{% set version = "2.1.5" %}
 
 package:
   name: pyglet
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/pyglet/pyglet-{{ version }}.tar.gz
-  sha256: c3f6acee1b855107578f8071d1d4e6bcb747e3a59801be9902d6bff401f36a4d
+  sha256: 98a04dd79a1c72825a2c067bdfcba478a6d70e2892d06ee95a63ad82efd9f103
 
 build:
   number: 0

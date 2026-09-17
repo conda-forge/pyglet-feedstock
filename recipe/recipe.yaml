@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "2.1.15"
+  version: "2.1.16"
 
 package:
   name: pyglet
@@ -9,10 +9,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/pyglet/pyglet-${{ version }}.tar.gz
-  sha256: 0ef34fe730808a97e48c24dd6ed4ff614024b980955ed8dbc2dd01ededaa08cb
+  sha256: ca90ee05532ced8330b8a8087ac2a7b69589b7fa7fb67f85aabe24aaf4ae42c0
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -20,7 +20,7 @@ requirements:
   host:
     - python ${{ python_min }}.*
     - pip
-    - flit-core
+    - flit-core >=3.2,<4
   run:
     - python >=${{ python_min }}
     - freetype
@@ -65,4 +65,3 @@ extra:
     - jakirkham
     - bitcraft
     - hmaarrfk  # just a maintainer to help move things forward. Happy to retire myself
-

@@ -21,7 +21,8 @@ requirements:
   run:
     - python >={{ python_min }}
     - freetype
-    - ffmpeg >=4.0.0
+    # pyglet 2.1.x only knows the FFmpeg 4-8 library names (avutil-56 .. avutil-60)
+    - ffmpeg >=4.0.0,<9
     - __linux  # [linux]
     - __osx  # [osx]
     - __win  # [win]

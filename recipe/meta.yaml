@@ -9,7 +9,7 @@ source:
   sha256: 0ef34fe730808a97e48c24dd6ed4ff614024b980955ed8dbc2dd01ededaa08cb
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
   noarch: python
 
@@ -22,12 +22,15 @@ requirements:
     - python >={{ python_min }}
     - freetype
     - ffmpeg >=4.0.0
+    - __linux  # [linux]
+    - __osx  # [osx]
+    - __win  # [win]
+    # pyglet dlopens the unversioned libGL.so, which only libgl-devel provides
+    - libgl-devel  # [linux]
 
 test:
-  # We moved all "import ..." tests to `run_tests.py` because on Linux, we
-  # need to run the tests through xvfb-run as some of them require a
-  # (virtual) display. On Windows and macOS, on the other hand, we can run the
-  # test script directly.
+  # All "import ..." tests live in `run_tests.py`. Imports that need a
+  # display are skipped on Linux, so no (virtual) X server is required.
   requires:
     - libglu  # [linux]
     - python {{ python_min }}
@@ -36,8 +39,7 @@ test:
     - run_tests.py
   commands:
     - pip check
-    - python run_tests.py  # [not linux]
-    - xvfb-run --server-args=":99 -screen 0 1024x768x24 -ac +extension GLX -noreset" python run_tests.py  # [linux]
+    - python run_tests.py
 
 about:
   home: http://pyglet.org

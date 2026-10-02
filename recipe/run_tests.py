@@ -40,6 +40,11 @@ elif sys.platform == 'darwin':
 elif sys.platform == 'linux':
     import pyglet.libs.x11
 
+    # Regression test for conda-forge/pyglet-feedstock#116: libGL must be
+    # provided by the conda environment.
+    import pyglet.lib
+    pyglet.lib.load_library('GL')
+
     # Disabled:
     # pyglet.window.xlib.XlibException: Could not create UTF8 text property
 

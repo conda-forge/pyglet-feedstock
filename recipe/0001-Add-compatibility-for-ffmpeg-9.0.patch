@@ -1,0 +1,174 @@
+Backport of upstream commit
+https://github.com/pyglet/pyglet/commit/ef9851ff61650b25aa4d0094c092505c7e18d493
+(https://github.com/pyglet/pyglet/pull/1499), merged to master after the
+2.1.16 release. Without it, pyglet.media.load() fails against FFmpeg 9 with
+AttributeError: 'AVFormatContext' object has no attribute 'nb_streams'.
+
+From ef9851ff61650b25aa4d0094c092505c7e18d493 Mon Sep 17 00:00:00 2001
+From: Nicolas Despres <nicolas.despres@gmail.com>
+Date: Sat, 26 Sep 2026 17:49:11 +0200
+Subject: [PATCH] Add compatibility for ffmpeg 9.0.
+
+---
+ pyglet/media/codecs/ffmpeg_lib/compat.py        |  1 +
+ pyglet/media/codecs/ffmpeg_lib/libavcodec.py    | 14 ++++++++------
+ pyglet/media/codecs/ffmpeg_lib/libavformat.py   | 10 +++++++---
+ pyglet/media/codecs/ffmpeg_lib/libavutil.py     | 13 +++++++++++--
+ pyglet/media/codecs/ffmpeg_lib/libswresample.py |  4 ++--
+ pyglet/media/codecs/ffmpeg_lib/libswscale.py    |  4 ++--
+ 6 files changed, 31 insertions(+), 15 deletions(-)
+
+diff --git a/pyglet/media/codecs/ffmpeg_lib/compat.py b/pyglet/media/codecs/ffmpeg_lib/compat.py
+index c91303fb2..faa6761cf 100644
+--- a/pyglet/media/codecs/ffmpeg_lib/compat.py
++++ b/pyglet/media/codecs/ffmpeg_lib/compat.py
+@@ -38,6 +38,7 @@ class CustomField(NamedTuple):
+     6: {'avcodec': 60, 'avformat': 60, 'avutil': 58, 'swresample': 4, 'swscale': 7},  # 6.x
+     7: {'avcodec': 61, 'avformat': 61, 'avutil': 59, 'swresample': 5, 'swscale': 8},  # 7.x
+     8: {'avcodec': 62, 'avformat': 62, 'avutil': 60, 'swresample': 6, 'swscale': 9},  # 8.x
++    9: {'avcodec': 63, 'avformat': 63, 'avutil': 61, 'swresample': 7, 'swscale': 10},  # 9.x
+ }
+ 
+ # Removals done per library and version.
+diff --git a/pyglet/media/codecs/ffmpeg_lib/libavcodec.py b/pyglet/media/codecs/ffmpeg_lib/libavcodec.py
+index afb8d1a8d..9e69344a8 100644
+--- a/pyglet/media/codecs/ffmpeg_lib/libavcodec.py
++++ b/pyglet/media/codecs/ffmpeg_lib/libavcodec.py
+@@ -15,8 +15,8 @@
+ 
+ avcodec = pyglet.lib.load_library(
+     'avcodec',
+-    win32=('avcodec-62', 'avcodec-61', 'avcodec-60', 'avcodec-59', 'avcodec-58'),
+-    darwin=('avcodec.62', 'avcodec.61', 'avcodec.60', 'avcodec.59', 'avcodec.58')
++    win32=('avcodec-63', 'avcodec-62', 'avcodec-61', 'avcodec-60', 'avcodec-59', 'avcodec-58'),
++    darwin=('avcodec.63', 'avcodec.62', 'avcodec.61', 'avcodec.60', 'avcodec.59', 'avcodec.58')
+ )
+ 
+ avcodec.avcodec_version.restype = c_int
+@@ -67,7 +67,7 @@ class AVPacket(Structure):
+ compat.add_version_changes('avcodec', 58, AVPacket, AVPacket_Fields,
+                            removals=('opaque', 'opaque_ref', 'time_base'))
+ 
+-for compat_ver in (59, 60, 61, 62):
++for compat_ver in (59, 60, 61, 62, 63):
+     compat.add_version_changes('avcodec', compat_ver, AVPacket, AVPacket_Fields,
+                                removals=('convergence_duration',))
+ 
+@@ -118,7 +118,7 @@ class AVCodecParameters(Structure):
+     compat.add_version_changes('avcodec', compat_ver, AVCodecParameters, AVCodecParameters_Fields,
+                                removals=('coded_side_data', 'nb_coded_side_data', 'ch_layout', 'framerate'))
+ 
+-for compat_ver in (61, 62):
++for compat_ver in (61, 62, 63):
+     compat.add_version_changes('avcodec', compat_ver, AVCodecParameters, AVCodecParameters_Fields,
+                                removals=('channel_layout', 'channels'))
+ 
+@@ -368,8 +368,10 @@ class AVFrameSideData(Structure):
+     compat.add_version_changes('avcodec', 61, AVCodecContext, AVCodecContext_Fields,
+                                removals=None)
+ 
+-    compat.add_version_changes('avcodec', 62, AVCodecContext, AVCodecContext_Fields,
+-                               removals=("ticks_per_frame",))
++    for compat_ver in (62, 63):
++        compat.add_version_changes('avcodec', compat_ver, AVCodecContext, AVCodecContext_Fields,
++                                   removals=("ticks_per_frame",))
++
+ else:
+     AVCodecContext_Fields = [
+         ('av_class', POINTER(AVClass)),
+diff --git a/pyglet/media/codecs/ffmpeg_lib/libavformat.py b/pyglet/media/codecs/ffmpeg_lib/libavformat.py
+index 6dc0410cc..9920ccf21 100644
+--- a/pyglet/media/codecs/ffmpeg_lib/libavformat.py
++++ b/pyglet/media/codecs/ffmpeg_lib/libavformat.py
+@@ -14,8 +14,8 @@
+ 
+ avformat = pyglet.lib.load_library(
+     'avformat',
+-    win32=('avformat-62', 'avformat-61', 'avformat-60', 'avformat-59', 'avformat-58'),
+-    darwin=('avformat.62', 'avformat.61', 'avformat.60', 'avformat.59', 'avformat.58')
++    win32=('avformat-63', 'avformat-62', 'avformat-61', 'avformat-60', 'avformat-59', 'avformat-58'),
++    darwin=('avformat.63', 'avformat.62', 'avformat.61', 'avformat.60', 'avformat.59', 'avformat.58')
+ )
+ 
+ avformat.avformat_version.restype = c_int
+@@ -170,6 +170,10 @@ class AVStream(Structure):
+                            removals=('codec', 'recommended_encoder_configuration', 'info', 'side_data', 'nb_side_data'),
+                            repositions=(compat.Reposition("codecpar", "id"),))
+ 
++compat.add_version_changes('avformat', 63, AVStream, AVStream_Fields,
++                           removals=('codec', 'recommended_encoder_configuration', 'info', 'side_data', 'nb_side_data'),
++                           repositions=(compat.Reposition("codecpar", "id"),))
++
+ 
+ class AVProgram(Structure):
+     pass
+@@ -336,7 +340,7 @@ class AVFormatContext(Structure):
+         ('io_close2', CFUNCTYPE(c_int, POINTER(AVFormatContext), POINTER(AVIOContext)))  # Added in 59.
+     ]
+ 
+-    for compat_ver in (61, 62):
++    for compat_ver in (61, 62, 63):
+         compat.add_version_changes('avformat', compat_ver, AVFormatContext, AVFormatContext_Fields, removals=None)
+ 
+ else:
+diff --git a/pyglet/media/codecs/ffmpeg_lib/libavutil.py b/pyglet/media/codecs/ffmpeg_lib/libavutil.py
+index 1465b9c23..313b71102 100644
+--- a/pyglet/media/codecs/ffmpeg_lib/libavutil.py
++++ b/pyglet/media/codecs/ffmpeg_lib/libavutil.py
+@@ -12,8 +12,8 @@
+ 
+ avutil = pyglet.lib.load_library(
+     'avutil',
+-    win32=('avutil-60', 'avutil-59', 'avutil-58', 'avutil-57', 'avutil-56'),
+-    darwin=('avutil.60', 'avutil.59', 'avutil.58', 'avutil.57', 'avutil.56')
++    win32=('avutil-61', 'avutil-60', 'avutil-59', 'avutil-58', 'avutil-57', 'avutil-56'),
++    darwin=('avutil.61', 'avutil.60', 'avutil.59', 'avutil.58', 'avutil.57', 'avutil.56')
+ )
+ 
+ avutil.avutil_version.restype = c_int
+@@ -211,6 +211,15 @@ class AVFrame(Structure):
+                                      'pkt_size',
+                                      ))
+ 
++compat.add_version_changes('avutil', 61, AVFrame, AVFrame_Fields,
++                           removals=('pkt_pts', 'error', 'qscale_table', 'qstride', 'qscale_type', 'qp_table_buf',
++                                     'channels', 'channel_layout',
++                                     'coded_picture_number', 'display_picture_number', 'reordered_opaque',
++                                     'pkt_duration',
++                                     'interlaced_frame', 'top_field_first', 'palette_has_changed', 'pkt_pos',
++                                     'pkt_size',
++                                     ))
++
+ AV_NOPTS_VALUE = -0x8000000000000000
+ AV_TIME_BASE = 1000000
+ AV_TIME_BASE_Q = AVRational(1, AV_TIME_BASE)
+diff --git a/pyglet/media/codecs/ffmpeg_lib/libswresample.py b/pyglet/media/codecs/ffmpeg_lib/libswresample.py
+index 1b4879dd2..993114143 100644
+--- a/pyglet/media/codecs/ffmpeg_lib/libswresample.py
++++ b/pyglet/media/codecs/ffmpeg_lib/libswresample.py
+@@ -13,8 +13,8 @@
+ 
+ swresample = pyglet.lib.load_library(
+     'swresample',
+-    win32=('swresample-6', 'swresample-5', 'swresample-4', 'swresample-3'),
+-    darwin=('swresample.6', 'swresample.5', 'swresample.4', 'swresample.3')
++    win32=('swresample-7', 'swresample-6', 'swresample-5', 'swresample-4', 'swresample-3'),
++    darwin=('swresample.7', 'swresample.6', 'swresample.5', 'swresample.4', 'swresample.3')
+ )
+ 
+ swresample.swresample_version.restype = c_int
+diff --git a/pyglet/media/codecs/ffmpeg_lib/libswscale.py b/pyglet/media/codecs/ffmpeg_lib/libswscale.py
+index 5cba02a28..2606639c5 100644
+--- a/pyglet/media/codecs/ffmpeg_lib/libswscale.py
++++ b/pyglet/media/codecs/ffmpeg_lib/libswscale.py
+@@ -13,8 +13,8 @@
+ 
+ swscale = pyglet.lib.load_library(
+     'swscale',
+-    win32=('swscale-9', 'swscale-8', 'swscale-7', 'swscale-6', 'swscale-5'),
+-    darwin=('swscale.9', 'swscale.8', 'swscale.7', 'swscale.6', 'swscale.5')
++    win32=('swscale-10', 'swscale-9', 'swscale-8', 'swscale-7', 'swscale-6', 'swscale-5'),
++    darwin=('swscale.10', 'swscale.9', 'swscale.8', 'swscale.7', 'swscale.6', 'swscale.5')
+ )
+ 
+ swscale.swscale_version.restype = c_int

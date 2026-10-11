@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "2.1.16"
+  version: 2.1.17
 
 package:
   name: pyglet
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/p/pyglet/pyglet-${{ version }}.tar.gz
-  sha256: ca90ee05532ced8330b8a8087ac2a7b69589b7fa7fb67f85aabe24aaf4ae42c0
+  sha256: 3cae0682fc5180122800fce8ae86987c7b45ca154da85ff084bad8bfd00ae03e
   patches:
     # FFmpeg 9 support, https://github.com/pyglet/pyglet/pull/1499
     - 0001-Add-compatibility-for-ffmpeg-9.0.patch
@@ -26,10 +26,6 @@ requirements:
     - flit-core >=3.2,<4
   run:
     - python >=${{ python_min }}
-    - freetype
-    # pyglet only knows the FFmpeg 4-9 library names (avutil-56 .. avutil-61);
-    # 9 is supported through the backported patch
-    - ffmpeg >=4.0.0,<10
     - if: linux
       then: __linux
     - if: osx
